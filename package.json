@@ -1,0 +1,71 @@
+{
+    "name": "cleats-cursor-case-sync",
+    "displayName": "Cleats: Cursor Case Sync",
+    "description": "Synchronize identifier casing across multi-selection edits.",
+    "version": "0.1.0",
+    "publisher": "coells",
+    "author": "Tomas Bouda",
+    "license": "MIT",
+    "type": "module",
+    "main": "./out/src/extension.js",
+    "types": "./out/src/extension.d.ts",
+    "engines": {
+        "vscode": "^1.105.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "keywords": [
+        "multi-cursor",
+        "multiselect",
+        "case",
+        "rename",
+        "editor",
+        "productivity"
+    ],
+    "activationEvents": [
+        "onStartupFinished"
+    ],
+    "contributes": {
+        "configuration": {
+            "title": "Cleats: Cursor Case Sync",
+            "properties": {
+                "cleatsCursorCaseSync.minSelections": {
+                    "type": "number",
+                    "default": 2,
+                    "minimum": 2,
+                    "maximum": 1000,
+                    "description": "Minimum selection count required before case sync is active."
+                },
+                "cleatsCursorCaseSync.maxSelections": {
+                    "type": "number",
+                    "default": 200,
+                    "minimum": 2,
+                    "maximum": 1000,
+                    "description": "Maximum selection count allowed before case sync is suspended."
+                }
+            }
+        }
+    },
+    "scripts": {
+        "clean": "rimraf out",
+        "vscode:prepublish": "npm run compile",
+        "compile": "npm run clean && tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "lint": "eslint src test --ext .ts",
+        "test": "npm run compile && node --test out/test/**/*.test.js",
+        "ci": "npm run lint && npm run test",
+        "package": "vsce package --no-dependencies --allow-missing-repository"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.38.0",
+        "@types/node": "^22.17.1",
+        "@types/vscode": "^1.105.0",
+        "@typescript-eslint/eslint-plugin": "^8.46.2",
+        "@typescript-eslint/parser": "^8.46.2",
+        "@vscode/vsce": "^3.6.0",
+        "eslint": "^9.38.0",
+        "rimraf": "^6.0.1",
+        "typescript": "^5.9.3"
+    }
+}
