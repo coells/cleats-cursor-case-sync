@@ -1,5 +1,5 @@
 export const DEFAULT_MIN_SELECTIONS = 2;
-export const DEFAULT_MAX_SELECTIONS = 500;
+export const DEFAULT_MAX_SELECTIONS = 200;
 
 /**
  * Supported casing styles used to normalize synchronized edits.

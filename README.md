@@ -27,17 +27,17 @@ Bulk identifier edits often break naming consistency. This extension keeps edits
 
 Source selections:
 
-- `username`
-- `USERNAME`
-- `UserName`
-- `userName`
+- `helloword`
+- `HELLOWORD`
+- `HelloWord`
+- `helloWord`
 
-Type `newValue` once and results become:
+Type `HelloWorld` once and results become:
 
-- `newvalue`
-- `NEWVALUE`
-- `NewValue`
-- `newValue`
+- `helloworld`
+- `HELLOWORLD`
+- `HelloWorld`
+- `helloWorld`
 
 ## Settings
 
@@ -48,55 +48,6 @@ Type `newValue` once and results become:
   - Maximum selections allowed before sync is suspended.
   - Default: `200`
 
-## Development
-
-Install and validate:
-
-```sh
-npm install
-npm run ci
-```
-
-## Debugging In VS Code
-
-Launch profiles in `.vscode/launch.json`:
-
-- `Run Extension (Build Once)`
-- `Run Extension (Watch)`
-
-Useful tasks in `.vscode/tasks.json`:
-
-- `npm: compile`
-- `npm: watch`
-- `npm: lint`
-- `npm: test`
-- `npm: package`
-
-Smoke test flow:
-
-1. Run `Run Extension (Watch)`.
-2. Open a text file in the Extension Development Host.
-3. Create 3-4 equal-length selections with different casing.
-4. Type replacement text and verify each selection keeps its own case style.
-
-## Release Process
-
-- Releases are manual.
-- The authoritative Copilot-facing checklist lives in `.github/copilot-instructions.md`.
-- Recommended release flow:
-
-```sh
-npm ci
-npm run ci
-npm run package
-```
-
-- Publish the tested VSIX from a local shell:
-
-```sh
-npx @vscode/vsce publish --packagePath ./cleats-cursor-case-sync-X.Y.Z.vsix
-```
-
 ## Release History
 
 ### 0.1.0 (2026-04-25)
@@ -105,3 +56,7 @@ npx @vscode/vsce publish --packagePath ./cleats-cursor-case-sync-X.Y.Z.vsix
 - Reimplemented multi-cursor case synchronization with modular core logic.
 - Added configurable min and max selection thresholds.
 - Added unit tests for case classification and content-change synchronization.
+
+### 0.1.1 (2026-04-30)
+
+- Minor bug fixes.
