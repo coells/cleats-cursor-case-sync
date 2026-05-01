@@ -50,6 +50,10 @@ Type `HelloWorld` once and results become:
 
 ## Release History
 
+### 0.1.3 (2026-05-01)
+
+- Tightened VSIX packaging via `.vscodeignore` to keep publish artifacts runtime-focused.
+
 ### 0.1.2 (2026-05-01)
 
 - Added a resized extension icon asset for Marketplace/package metadata.
