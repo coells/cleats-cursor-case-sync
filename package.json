@@ -2,7 +2,7 @@
     "name": "cleats-cursor-case-sync",
     "displayName": "Cleats: Cursor Case Sync",
     "description": "Synchronize identifier casing across multi-selection edits.",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "publisher": "coells",
     "author": "Tomas Bouda",
     "license": "MIT",
@@ -12,6 +12,7 @@
     "engines": {
         "vscode": "^1.105.0"
     },
+    "icon": "media/icon.png",
     "categories": [
         "Other"
     ],

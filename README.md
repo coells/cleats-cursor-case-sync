@@ -50,13 +50,19 @@ Type `HelloWorld` once and results become:
 
 ## Release History
 
+### 0.1.2 (2026-05-01)
+
+- Added a resized extension icon asset for Marketplace/package metadata.
+- Bumped extension version to 0.1.2.
+- Updated development docs for release metadata checks.
+
+### 0.1.1 (2026-04-30)
+
+- Minor bug fixes.
+
 ### 0.1.0 (2026-04-25)
 
 - Initial release candidate.
 - Reimplemented multi-cursor case synchronization with modular core logic.
 - Added configurable min and max selection thresholds.
 - Added unit tests for case classification and content-change synchronization.
-
-### 0.1.1 (2026-04-30)
-
-- Minor bug fixes.

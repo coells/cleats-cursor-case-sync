@@ -34,6 +34,7 @@ Smoke test flow:
 
 - Releases are manual.
 - The authoritative Copilot-facing checklist lives in `.github/copilot-instructions.md`.
+- Before packaging, verify `package.json` release metadata (for example `version` and `icon`).
 - Recommended release flow:
 
 ```sh
