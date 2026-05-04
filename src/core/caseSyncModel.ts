@@ -40,6 +40,12 @@ export interface TrackedSpan {
     readonly caseType: CaseType;
 }
 
+export interface ApplyContentChangesResult {
+    readonly nextSpans: TrackedSpan[];
+    readonly edits: TrackedSpan[];
+    readonly hasUniformCaseType: boolean;
+}
+
 /**
  * Classifies text into one of the supported casing styles.
  */
@@ -157,6 +163,7 @@ export function updateTrackedSpanWithChange(
     text: string,
     range: RangeLike,
     offset: number,
+    applyCaseNormalization = true,
 ): TrackedSpan {
     if (
         !range.isSingleLine ||
@@ -172,7 +179,7 @@ export function updateTrackedSpanWithChange(
 
     return {
         start: translateOnLine(span.start, offset),
-        text: normalizeCase(baseText, span.caseType),
+        text: applyCaseNormalization ? normalizeCase(baseText, span.caseType) : baseText,
         caseType: span.caseType,
     };
 }
@@ -183,14 +190,14 @@ export function updateTrackedSpanWithChange(
 export function applyContentChangesToSpans(
     spans: readonly TrackedSpan[],
     changes: readonly ContentChangeLike[],
-): {
-    readonly nextSpans: TrackedSpan[];
-    readonly edits: TrackedSpan[];
-} {
+): ApplyContentChangesResult {
+    const hasUniformCaseType = spans.length > 0 && spans.every((span) => span.caseType === spans[0].caseType);
+
     if (spans.length !== changes.length) {
         return {
             nextSpans: spans.slice(),
             edits: [],
+            hasUniformCaseType,
         };
     }
 
@@ -209,7 +216,13 @@ export function applyContentChangesToSpans(
             }
 
             const previousSpan = nextSpans[index];
-            const updatedSpan = updateTrackedSpanWithChange(previousSpan, change.text, change.range, currentOffset);
+            const updatedSpan = updateTrackedSpanWithChange(
+                previousSpan,
+                change.text,
+                change.range,
+                currentOffset,
+                !hasUniformCaseType,
+            );
             nextSpans[index] = updatedSpan;
 
             if (!previousSpan.text.startsWith(updatedSpan.text)) {
@@ -222,5 +235,6 @@ export function applyContentChangesToSpans(
     return {
         nextSpans,
         edits,
+        hasUniformCaseType,
     };
 }

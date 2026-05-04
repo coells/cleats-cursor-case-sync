@@ -19,6 +19,7 @@ Bulk identifier edits often break naming consistency. This extension keeps edits
 - Synchronization is active only when all selections are:
   - single-line
   - equal length
+  - of distinct classifications
   - within configured min and max selection bounds
 - Undo behavior stays clean by avoiding extra undo stops.
 - Undo and redo document events are ignored for synchronization logic.
@@ -50,6 +51,11 @@ Type `HelloWorld` once and results become:
 
 ## Release History
 
+### 0.1.4 (2026-06-01)
+
+- Added reference to GitHub repository in package metadata.
+- Disable synchronization when all selections are classified as the same case style to fix certain edge cases.
+
 ### 0.1.3 (2026-05-01)
 
 - Tightened VSIX packaging via `.vscodeignore` to keep publish artifacts runtime-focused.
@@ -57,7 +63,6 @@ Type `HelloWorld` once and results become:
 ### 0.1.2 (2026-05-01)
 
 - Added a resized extension icon asset for Marketplace/package metadata.
-- Bumped extension version to 0.1.2.
 - Updated development docs for release metadata checks.
 
 ### 0.1.1 (2026-04-30)

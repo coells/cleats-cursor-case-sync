@@ -109,4 +109,39 @@ void test("applyContentChangesToSpans computes edits with offsets", () => {
     assert.equal(result.nextSpans[1].text, "QA");
     assert.equal(result.nextSpans[1].start.character, 5);
     assert.equal(result.edits.length, 2);
+    assert.equal(result.hasUniformCaseType, false);
+});
+
+void test("applyContentChangesToSpans respects typed text when all classifications match", () => {
+    const spans = [toTrackedSpan({ line: 0, character: 0 }, "List"), toTrackedSpan({ line: 1, character: 0 }, "Type")];
+
+    const changes: ContentChangeLike[] = [
+        {
+            range: {
+                start: { line: 0, character: 0 },
+                end: { line: 0, character: 4 },
+                isSingleLine: true,
+            },
+            rangeOffset: 0,
+            rangeLength: 4,
+            text: "list",
+        },
+        {
+            range: {
+                start: { line: 1, character: 0 },
+                end: { line: 1, character: 4 },
+                isSingleLine: true,
+            },
+            rangeOffset: 10,
+            rangeLength: 4,
+            text: "list",
+        },
+    ];
+
+    const result = applyContentChangesToSpans(spans, changes);
+
+    assert.equal(result.nextSpans[0].text, "list");
+    assert.equal(result.nextSpans[1].text, "list");
+    assert.equal(result.edits.length, 2);
+    assert.equal(result.hasUniformCaseType, true);
 });
